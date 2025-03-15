@@ -14,4 +14,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Validate Network settings
+        working_directory: ${{ inputs.component_path }}
         run: sh ${PWD}/${{ inputs.component_path }}/network-validate.sh
+  
