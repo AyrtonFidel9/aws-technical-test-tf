@@ -6,6 +6,9 @@ on:
         description: "Path of terraform component"
         required: true
         type: string
+permissions:
+  id-token: write
+  contents: read 
 
 jobs:
   validate:
@@ -17,6 +20,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: ayrton
           aws-region: us-east-1
       - uses: actions/checkout@v2
       - name: Validate Network settings
