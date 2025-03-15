@@ -6,11 +6,6 @@ on:
       - 'us-east-1/env/prod/network/**'
       - '.github/workflows/**'
   workflow_dispatch:
-    inputs:
-      branch:
-        required: false
-        type: string
-        default: "main"
 
 jobs:
   network_plan:

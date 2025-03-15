@@ -21,7 +21,6 @@ jobs:
           workflow: network.prod.us-east-1.yml
           ref: refs/heads/main
           workflow_timeout_seconds: 3000
-          distinct_id: wait-for-network
       - name: Await Run ID ${{ steps.return_dispatch.outputs.run_id }}
         uses: Codex-/await-remote-run@v1.0.0
         with:
