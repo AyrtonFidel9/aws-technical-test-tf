@@ -1,4 +1,4 @@
-name: network-apply
+name: destroy
 on:
   workflow_call:
     inputs:
@@ -9,6 +9,9 @@ on:
       environment:
         required: true
         type: string
+      component:
+        required: true
+        type: string
     secrets:
       AWS_ACCESS_KEY_ID:
         required: true
@@ -16,7 +19,7 @@ on:
         required: true
     
 jobs:
-  apply:
+  destroy:
     runs-on: ubuntu-latest
     container: hashicorp/terraform:1.11
     environment: ${{ inputs.environment }}
@@ -31,6 +34,9 @@ jobs:
           aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID --profile ayrton
           aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY --profile ayrton
       - uses: actions/checkout@v2
-      - name: Apply Network settings
+      - name: Terraform Plan ${{ inputs.component }} settings
         working-directory: ${{ inputs.component_path }}
-        run: sh network-apply.sh
+        run: sh ${{ inputs.component }}-plan.sh
+      - name: Destroy ${{ inputs.component }} settings
+        working-directory: ${{ inputs.component_path }}
+        run: sh ${{ inputs.component }}-destroy.sh
