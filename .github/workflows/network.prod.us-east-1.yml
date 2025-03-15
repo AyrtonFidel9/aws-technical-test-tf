@@ -1,5 +1,5 @@
 name: Network_Prod
-run-name: ${{ github.actor }} is Validating Terraform project 🚀
+run-name: ${{ github.actor }} is running pipeline for Network settings 🚀
 on: 
   push:
     paths:
