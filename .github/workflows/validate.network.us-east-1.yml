@@ -7,13 +7,7 @@ on:
       - '.github/workflows/**'
 
 jobs:
-  check:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-  network-stages:
+  network:
     uses: ayrtonfidel9/aws-technical-test-tf/.github/workflows/terraform-workflow.yml@main
     with:
-      component_path: 'us-east-1/env/prod/network/'
+      component_path: 'ayrtonfidel9/aws-technical-test-tf/us-east-1/env/prod/network/'
