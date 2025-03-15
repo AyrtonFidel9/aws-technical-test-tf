@@ -7,8 +7,13 @@ on:
       - '.github/workflows/**'
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
   network-stages:
     uses: ayrtonfidel9/aws-technical-test-tf/.github/workflows/terraform-workflow.yml@main
-    # Passing 'node-version' as an input parameter to the reusable workflow
     with:
       component_path: 'us-east-1/env/prod/network/'
