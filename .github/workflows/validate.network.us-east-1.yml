@@ -1,3 +1,11 @@
+stage: &stage
+  run-name: ${{ github.actor }} is Validating Terraform project 🚀
+  on: 
+    push:
+      paths:
+        - 'us-east-1/env/prod/$COMPONENT/**'
+        - '.github/workflows/**'
+        
 name: Terraform Validate Stage
 env:
   COMPONENT: "network"
