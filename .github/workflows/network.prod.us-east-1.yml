@@ -11,4 +11,4 @@ jobs:
     uses: ayrtonfidel9/aws-technical-test-tf/.github/workflows/network.workflow.yml@main
     with:
       component_path: 'us-east-1/env/prod/network'
-      secrets: inherit
+    secrets: inherit
