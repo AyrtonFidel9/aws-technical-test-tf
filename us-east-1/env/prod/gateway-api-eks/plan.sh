@@ -1,6 +1,8 @@
 #!/bin/bash
 # eks-apply: script to apply aws eks (k8s) resources using terraform 
 
+export AWS_PROFILE=ayrton
+
 echo "Planning IAM PERMISSIONS..."
 sleep 5
 cd 01-iam-permissions/

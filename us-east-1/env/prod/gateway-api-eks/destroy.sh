@@ -1,6 +1,8 @@
 #!/bin/bash
 # eks-destroy: script to destroy aws eks (k8s) resources using terraform 
 
+export AWS_PROFILE=ayrton
+
 echo "Destroying ADD-ONS..."
 sleep 5
 cd 04-addons/
