@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4  # ✅ Ensures repo is available
       - name: Debug Repository Structure
-        run: ls -alhR /github/workspace  # ✅ Check if files exist
+        run: ls -alhR /ayrtonfidel9/aws-technical-test-tf  # ✅ Check if files exist
       - name: Validate Network settings
         working-directory: ${{ inputs.component_path }}
         run: sh ./network-validate.sh
