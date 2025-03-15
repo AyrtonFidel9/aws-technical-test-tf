@@ -1,6 +1,14 @@
 #!/bin/bash
 # network-destroy: script to destroy aws resources using terraform 
 
+echo "Destroying Endpoints..."
+sleep 5
+cd 06-endpoints/
+terraform destroy --auto-approve
+terraform state pull > terraform.tfstate
+cd ..
+sleep 2
+
 echo "Destroying Route tables..."
 sleep 5
 cd 05-route-tables/

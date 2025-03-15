@@ -22,3 +22,7 @@ output "isolated_subnets_id" {
   description = "isolated subnets id created"
   value = module.isolated_subnets.subnets_created_id
 }
+
+output "inference_domain_subnets_cidr" {
+  value = module.inference_domain_subnets.subnets_created_cidr_block
+}

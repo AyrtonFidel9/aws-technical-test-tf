@@ -12,7 +12,7 @@ terraform {
 }
 
 module "eks_permissions" {
-  source = "../../../../modules/eks/01-iam-permissions"
+  source = "../../../../../modules/eks/01-iam-permissions"
   
   eks_iam_users_arn = var.users_arn
 

@@ -52,4 +52,15 @@ terraform state pull > terraform.tfstate
 cd ..
 sleep 2
 
+
+echo "Applying Endpoints..."
+sleep 5
+cd 06-endpoints/
+terraform init -backend-config=endpoints-backend.hcl
+terraform plan
+terraform apply --auto-approve
+terraform state pull > terraform.tfstate
+cd ..
+sleep 2
+
 echo "ALL NETWORK INFRASTRUCTURE APPLIED SUCCESSFULLY"

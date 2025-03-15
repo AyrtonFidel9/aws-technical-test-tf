@@ -1,5 +1,5 @@
 module "eks_addons" {
-  source = "../../../../modules/eks/04-add-ons"
+  source = "../../../../../modules/eks/04-add-ons"
   
   cluster_name  = data.terraform_remote_state.tf_cluster.outputs.cluster_name
   addons        = var.addons
