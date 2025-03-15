@@ -1,4 +1,4 @@
 output "vpc_id" {
   description = "aws vpc id"
-  value = aws_vpc.vpc_eks.id
+  value = aws_vpc.vpc.id
 }

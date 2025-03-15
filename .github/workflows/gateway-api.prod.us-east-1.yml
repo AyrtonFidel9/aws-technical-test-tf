@@ -5,10 +5,27 @@ on:
     paths:
       - 'us-east-1/env/prod/gateway-api-eks/**'
       - '.github/workflows/**'
-  workflow_run:
-    workflows: ["Network_Prod"]
 
 jobs:
+  wait_for:
+    steps:
+      - name: Dispatch an action and get the run ID
+        uses: codex-/return-dispatch@v1
+        id: return_dispatch
+        with:
+          token: ${{ github.token }}
+          repo: ayrtonfidel9
+          owner: aws-technical-test-tf
+          workflow: network.prod.us-east-1.yml
+      - name: Await Run ID ${{ steps.return_dispatch.outputs.run_id }}
+        uses: Codex-/await-remote-run@v1.0.0
+        with:
+          token: ${{ github.token }}
+          repo: return-dispatch
+          owner: codex-
+          run_id: ${{ steps.return_dispatch.outputs.run_id }}
+          run_timeout_seconds: 300 # Optional
+          poll_interval_ms: 5000
   gateway_plan:
     uses: ayrtonfidel9/aws-technical-test-tf/.github/workflows/workflow.plan.yml@main
     with:
