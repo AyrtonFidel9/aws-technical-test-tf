@@ -1,7 +1,7 @@
 name: validate-plan
 on:
-  workflow_dispatch:
   workflow_call:
+  workflow_dispatch:
     inputs:
       component_path:
         description: "Path of terraform component"
