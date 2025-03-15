@@ -1,11 +1,16 @@
 name: API_Gateway_Prod
 run-name: ${{ github.actor }} is running pipeline for API GATEWAY settings 🚀
 on: 
-  # push:
-  #   paths:
-  #     - 'us-east-1/env/prod/gateway-api-eks/**'
-  #     - '.github/workflows/**'
+  push:
+    paths:
+      - 'us-east-1/env/prod/gateway-api-eks/**'
+      - '.github/workflows/**'
   workflow_dispatch:
+    inputs:
+      branch:
+        required: false
+        type: string
+        default: "main"
 
 jobs:
   wait_for:
@@ -20,7 +25,8 @@ jobs:
           repo: aws-technical-test-tf
           owner: ayrtonfidel9
           workflow: network.prod.us-east-1.yml
-          ref: main
+          ref: refs/heads/main
+          workflow_timeout_seconds: 3000
       - name: Await Run ID ${{ steps.return_dispatch.outputs.run_id }}
         uses: Codex-/await-remote-run@v1.0.0
         with:
