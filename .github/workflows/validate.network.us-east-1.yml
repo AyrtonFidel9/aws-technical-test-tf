@@ -10,4 +10,4 @@ jobs:
   network:
     uses: ayrtonfidel9/aws-technical-test-tf/.github/workflows/terraform-workflow.yml@main
     with:
-      component_path: 'ayrtonfidel9/aws-technical-test-tf/us-east-1/env/prod/network/'
+      component_path: 'us-east-1/env/prod/network'
