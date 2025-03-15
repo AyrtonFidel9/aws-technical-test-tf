@@ -26,3 +26,7 @@ output "isolated_subnets_id" {
 output "inference_domain_subnets_cidr" {
   value = module.inference_domain_subnets.subnets_created_cidr_block
 }
+
+output "gateway_api_subnets_cidr" {
+  value = module.isolated_subnets.subnets_created_cidr_block
+}
