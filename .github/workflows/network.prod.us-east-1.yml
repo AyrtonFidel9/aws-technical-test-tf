@@ -17,7 +17,18 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   
   network_apply:
+    needs: network_plan
     uses: ayrtonfidel9/aws-technical-test-tf/.github/workflows/network.workflow.apply.yml@main
+    with:
+      component_path: 'us-east-1/env/prod/network'
+      environment: Production
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  
+  network_destroy:
+    needs: network_apply
+    uses: ayrtonfidel9/aws-technical-test-tf/.github/workflows/network.workflow.destroy.yml@main
     with:
       component_path: 'us-east-1/env/prod/network'
       environment: Production
