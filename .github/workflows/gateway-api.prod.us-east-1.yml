@@ -29,6 +29,7 @@ jobs:
           run_timeout_seconds: 300 # Optional
           poll_interval_ms: 5000
   gateway_plan:
+    needs: wait_for
     uses: ayrtonfidel9/aws-technical-test-tf/.github/workflows/workflow.plan.yml@main
     with:
       component_path: 'us-east-1/env/prod/gateway-api-eks'
