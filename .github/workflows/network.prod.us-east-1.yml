@@ -10,6 +10,11 @@ on:
       distinct_id:
 
 jobs:
+  network_dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo distinct ID ${{ github.event.inputs.distinct_id }}
+        run: echo ${{ github.event.inputs.distinct_id }}
   network_plan:
     uses: ayrtonfidel9/aws-technical-test-tf/.github/workflows/workflow.plan.yml@main
     with:
