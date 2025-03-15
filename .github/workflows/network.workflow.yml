@@ -29,8 +29,8 @@ jobs:
           python-version: '3.12'
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install awscli
+          apt-get update
+          apt-get install -y python3 python3-pip
       - name: Configure AWS Credentials
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
