@@ -1,4 +1,3 @@
-
 name: Terraform Validate Stage
 env:
   COMPONENT: "network"
