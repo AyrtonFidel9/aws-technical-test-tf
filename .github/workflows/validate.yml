@@ -11,5 +11,5 @@ jobs:
     container: hashicorp/terraform:1.11
     steps:
       - name: Validate Network settings
-        working-directory: ./us-east-1/env/prod/network
+        working-directory: us-east-1/env/prod/network
         run: bash ./network-validate.sh
