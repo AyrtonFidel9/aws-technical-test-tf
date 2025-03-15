@@ -24,11 +24,13 @@ jobs:
     container: hashicorp/terraform:1.11
     environment: ${{ inputs.environment }}
     steps:
-      - uses: unfor19/install-aws-cli-action@v1
+      - uses: actions/setup-python@v2
         with:
-          version: 2
-          verbose: false
-          arch: amd64
+          python-version: '3.7'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install awscli
       - name: Configure AWS Credentials
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
