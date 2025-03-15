@@ -33,6 +33,7 @@ jobs:
         run: |
           aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID --profile ayrton
           aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY --profile ayrton
+          export AWS_PROFILE=ayrton
       - uses: actions/checkout@v2
       - name: Destroy ${{ inputs.component }} settings
         working-directory: ${{ inputs.component_path }}

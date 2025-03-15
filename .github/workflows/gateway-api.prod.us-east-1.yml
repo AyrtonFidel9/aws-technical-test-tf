@@ -16,8 +16,8 @@ jobs:
         id: return_dispatch
         with:
           token: ${{ github.token }}
-          repo: ayrtonfidel9
-          owner: aws-technical-test-tf
+          repo: aws-technical-test-tf
+          owner: ayrtonfidel9
           workflow: network.prod.us-east-1.yml
           ref: main
       - name: Await Run ID ${{ steps.return_dispatch.outputs.run_id }}
