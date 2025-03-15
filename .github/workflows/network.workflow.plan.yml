@@ -1,0 +1,56 @@
+name: validate-plan
+on:
+  workflow_call:
+    inputs:
+      component_path:
+        description: "Path of terraform component"
+        required: true
+        type: string
+      environment:
+        required: true
+        type: string
+    secrets:
+      AWS_ACCESS_KEY_ID:
+        required: true
+      AWS_SECRET_ACCESS_KEY:
+        required: true
+    
+    
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    container: hashicorp/terraform:1.11
+    environment: ${{ inputs.environment }}
+    steps:
+      - name: Install AWS CLI v2
+        run: apk add --no-cache aws-cli
+      - name: Configure AWS Credentials
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID --profile ayrton
+          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY --profile ayrton
+      - uses: actions/checkout@v2
+      - name: Validate Network settings
+        working-directory: ${{ inputs.component_path }}
+        run: sh network-validate.sh
+  plan:
+    runs-on: ubuntu-latest
+    needs: validate
+    container: hashicorp/terraform:1.11
+    environment: ${{ inputs.environment }}
+    steps:
+      - name: Install AWS CLI v2
+        run: apk add --no-cache aws-cli
+      - name: Configure AWS Credentials
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID --profile ayrton
+          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY --profile ayrton
+      - uses: actions/checkout@v2
+      - name: Terraorm Plan Network settings
+        working-directory: ${{ inputs.component_path }}
+        run: sh network-plan.sh
