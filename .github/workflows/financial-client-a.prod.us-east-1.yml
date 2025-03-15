@@ -1,5 +1,5 @@
 name: API_Gateway_Prod
-run-name: ${{ github.actor }} is running pipeline for API GATEWAY settings 🚀
+run-name: ${{ github.actor }} is running pipeline for Financial Client A settings 🚀
 on: 
   push:
     paths:
@@ -43,7 +43,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   
   financial-client-a_apply:
-    needs: gateway_plan
+    needs: financial-client-a_plan
     uses: ayrtonfidel9/aws-technical-test-tf/.github/workflows/workflow.apply.yml@main
     with:
       component_path: 'us-east-1/env/prod/clients/financial-client-a'
