@@ -1,0 +1,16 @@
+
+name: Terraform Validate Stage
+env:
+  COMPONENT: "network"
+<<: *stage
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    container: hashicorp/terraform:1.11
+    env:
+      COMPONENT: "network"
+    steps: 
+      - name: Validate Network settings
+          working-directory: us-east-1/env/prod/network
+          run: bash ./network-validate.sh
