@@ -1,4 +1,4 @@
-name: validate-plan
+name: network-validate-plan
 on:
   workflow_call:
     inputs:

@@ -14,20 +14,6 @@ on:
         required: true
       AWS_SECRET_ACCESS_KEY:
         required: true
-  workflow_dispatch:
-    inputs:
-      component_path:
-        description: "Path of terraform component"
-        required: true
-        type: string
-      environment:
-        required: true
-        type: string
-    secrets:
-      AWS_ACCESS_KEY_ID:
-        required: true
-      AWS_SECRET_ACCESS_KEY:
-        required: true
     
 jobs:
   destroy:
@@ -45,6 +31,9 @@ jobs:
           aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID --profile ayrton
           aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY --profile ayrton
       - uses: actions/checkout@v2
+      - name: Terraform Plan Network settings
+        working-directory: ${{ inputs.component_path }}
+        run: sh network-plan.sh
       - name: Destroy Network settings
         working-directory: ${{ inputs.component_path }}
         run: sh network-destroy.sh
