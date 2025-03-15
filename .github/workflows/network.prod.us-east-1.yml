@@ -6,6 +6,8 @@ on:
       - 'us-east-1/env/prod/network/**'
       - '.github/workflows/**'
   workflow_dispatch:
+    inputs:
+      distinct_id:
 
 jobs:
   network_plan:
