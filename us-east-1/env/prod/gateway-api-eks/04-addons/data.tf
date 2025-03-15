@@ -1,6 +1,8 @@
 data "terraform_remote_state" "tf_cluster"{
-  backend = "local"
+  backend = "s3"
   config = {
-    path = "../02-cluster/terraform.tfstate"
+    bucket = "uplinq-infra"
+    key = "us-east-1/env/prod/gateway-api-eks/cluster/terraform.tfstate"
+    region = "us-east-1"
   }
 }

@@ -1,4 +1,4 @@
-key             = "network/vpc/terraform.tfstate"
+key             = "us-east-1/env/prod/network/vpc/terraform.tfstate"
 bucket          = "uplinq-infra"
 region          = "us-east-1"
 profile         = "ayrton"

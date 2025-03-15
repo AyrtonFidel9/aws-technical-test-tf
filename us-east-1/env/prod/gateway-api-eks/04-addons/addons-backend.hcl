@@ -1,4 +1,4 @@
-key             = "gateway-api-eks/addons/terraform.tfstate"
+key             = "us-east-1/env/prod/gateway-api-eks/addons/terraform.tfstate"
 bucket          = "uplinq-infra"
 region          = "us-east-1"
 profile         = "ayrton"

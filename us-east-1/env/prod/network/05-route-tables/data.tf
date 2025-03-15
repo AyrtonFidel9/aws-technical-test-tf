@@ -1,28 +1,36 @@
 data "terraform_remote_state" "tf_vpc" {
-  backend = "local"
+  backend = "s3"
   config = {
-    path = "../01-vpc/terraform.tfstate"
+    bucket = "uplinq-infra"
+    key = "us-east-1/env/prod/network/vpc/terraform.tfstate"
+    region = "us-east-1"
   }
 }
 
 data "terraform_remote_state" "tf_subnets" {
-  backend = "local"
+  backend = "s3"
   config = {
-    path = "../02-subnets/terraform.tfstate"
+    bucket = "uplinq-infra"
+    key = "us-east-1/env/prod/network/subnets/terraform.tfstate"
+    region = "us-east-1"
   }
 }
 
 data "terraform_remote_state" "tf_igw" {
-  backend = "local"
+  backend = "s3"
   config = {
-    path = "../03-internet-gateway/terraform.tfstate"
+    bucket = "uplinq-infra"
+    key = "us-east-1/env/prod/network/igw/terraform.tfstate"
+    region = "us-east-1"
   }
 }
 
 data "terraform_remote_state" "tf_nat" {
-  backend = "local"
+  backend = "s3"
   config = {
-    path = "../04-nat-gateway/terraform.tfstate"
+    bucket = "uplinq-infra"
+    key = "us-east-1/env/prod/network/nat-gateway/terraform.tfstate"
+    region = "us-east-1"
   }
 }
 

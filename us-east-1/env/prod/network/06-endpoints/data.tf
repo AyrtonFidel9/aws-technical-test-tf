@@ -1,13 +1,17 @@
 data "terraform_remote_state" "tf_vpc" {
-  backend = "local"
+  backend = "s3"
   config = {
-    path = "../01-vpc/terraform.tfstate"
+    bucket = "uplinq-infra"
+    key = "us-east-1/env/prod/network/vpc/terraform.tfstate"
+    region = "us-east-1"
   }
 }
 
 data "terraform_remote_state" "tf_route_tables" {
-  backend = "local"
+  backend = "s3"
   config = {
-    path = "../05-route-tables/terraform.tfstate"
+    bucket = "uplinq-infra"
+    key = "us-east-1/env/prod/network/route-tables/terraform.tfstate"
+    region = "us-east-1"
   }
 }

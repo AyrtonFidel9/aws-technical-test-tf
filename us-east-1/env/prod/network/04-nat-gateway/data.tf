@@ -1,6 +1,8 @@
 data "terraform_remote_state" "tf_subnets" {
-  backend = "local"
+  backend = "s3"
   config = {
-    path = "../02-subnets/terraform.tfstate"
+    bucket = "uplinq-infra"
+    key = "us-east-1/env/prod/network/subnets/terraform.tfstate"
+    region = "us-east-1"
   }
 }

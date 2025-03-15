@@ -1,20 +1,17 @@
 data "terraform_remote_state" "tf_iam" {
-  backend = "local"
+  backend = "s3"
   config = {
-    path = "../01-iam-permissions/terraform.tfstate"
+    bucket = "uplinq-infra"
+    key = "us-east-1/env/prod/gateway-api-eks/iam-permissions/terraform.tfstate"
+    region = "us-east-1"
   }
 }
 
 data "terraform_remote_state" "tf_subnets" {
-  backend = "local"
+  backend = "s3"
   config = {
-    path = "../../network/02-subnets/terraform.tfstate"
-  }
-}
-
-data "terraform_remote_state" "tf_pipeline_iam" {
-  backend = "local"
-  config = {
-    path = "../../pipeline/terraform.tfstate"
+    bucket = "uplinq-infra"
+    key = "us-east-1/env/prod/network/subnets/terraform.tfstate"
+    region = "us-east-1"
   }
 }
