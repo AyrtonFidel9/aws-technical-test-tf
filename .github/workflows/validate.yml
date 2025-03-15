@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'us-east-1/**'
-      #- '.github/workflows/**'
+      - '.github/workflows/**'
 jobs:
   validate:
     runs-on: ubuntu-latest
