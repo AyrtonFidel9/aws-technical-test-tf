@@ -1,0 +1,12 @@
+name: Terraform Pipeline
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: 
+  push:
+    paths:
+      - 'us-east-1/**'
+      - '.github/workflows/**'
+jobs:
+  Validate:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'validation job created'
