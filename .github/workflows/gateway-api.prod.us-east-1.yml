@@ -19,6 +19,7 @@ jobs:
           repo: ayrtonfidel9
           owner: aws-technical-test-tf
           workflow: network.prod.us-east-1.yml
+          ref: main
       - name: Await Run ID ${{ steps.return_dispatch.outputs.run_id }}
         uses: Codex-/await-remote-run@v1.0.0
         with:
