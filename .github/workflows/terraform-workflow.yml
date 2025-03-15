@@ -12,11 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     container: hashicorp/terraform:1.11
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4  # ✅ Ensures repo is available
-      - name: Debug Repository Structure
-        run: ls -alhR /github/workspace  # ✅ Check if files exist
       - name: Validate Network settings
-        working-directory: ${{ inputs.component_path }}
+        working-directory: ${{ github.workspace }}/${{ inputs.component_path }}
         run: sh ./network-validate.sh
   
