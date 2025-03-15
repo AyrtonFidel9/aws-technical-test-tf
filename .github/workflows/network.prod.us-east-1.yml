@@ -6,6 +6,9 @@ on:
       - 'us-east-1/env/prod/network/**'
       - '.github/workflows/**'
 
+permissions:
+      id-token: write
+      contents: read 
 jobs:
   network_prod:
     uses: ayrtonfidel9/aws-technical-test-tf/.github/workflows/network.workflow.yml@main
