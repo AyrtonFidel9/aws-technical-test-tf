@@ -5,6 +5,7 @@ on:
     paths:
       - 'us-east-1/env/prod/gateway-api-eks/**'
       - '.github/workflows/**'
+  workflow_dispatch:
 
 jobs:
   wait_for:
