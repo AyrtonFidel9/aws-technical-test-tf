@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is running pipeline for Database settings 🚀
 on: 
   push:
     paths:
-      - 'us-east-1/env/prod/clients/financial-client-a/**'
+      - 'us-east-1/env/prod/database/**'
       - '.github/workflows/**'
 
 jobs:
@@ -44,7 +44,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   
   database_apply:
-    needs: financial-client-a_plan
+    needs: database_plan
     uses: ayrtonfidel9/aws-technical-test-tf/.github/workflows/workflow.apply.yml@main
     with:
       component_path: 'us-east-1/env/prod/clients/database'
@@ -54,12 +54,13 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   
-  # financial-client-a_destroy:
+  # database_destroy:
   #   needs: network_apply
   #   uses: ayrtonfidel9/aws-technical-test-tf/.github/workflows/workflow.destroy.yml@main
   #   with:
-  #     component_path: 'us-east-1/env/prod/clients/financial-client-a'
+  #     component_path: 'us-east-1/env/prod/clients/database'
   #     environment: Production
-  #     component: financial-client-a
+  #     component: database
   #   secrets:
   #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
