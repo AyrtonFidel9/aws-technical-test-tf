@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export AWS_PROFILE=ayrton
 
 echo "Applying Inference Domain..."
 sleep 5

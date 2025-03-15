@@ -5,3 +5,60 @@ on:
     paths:
       - 'us-east-1/env/prod/clients/financial-client-a/**'
       - '.github/workflows/**'
+
+jobs:
+  wait_for:
+    runs-on: ubuntu-latest
+    environment: Production
+    steps:
+      - name: Dispatch an action and get the run ID
+        uses: codex-/return-dispatch@v2
+        id: return_dispatch
+        with:
+          token: ${{ github.token }}
+          repo: aws-technical-test-tf
+          owner: ayrtonfidel9
+          workflow: network.prod.us-east-1.yml
+          ref: refs/heads/main
+          distinct_id: wait-for-netw
+          #workflow_timeout_seconds: 3000
+      - name: Await Run ID ${{ steps.return_dispatch.outputs.run_id }}
+        uses: Codex-/await-remote-run@v1.0.0
+        with:
+          token: ${{ github.token }}
+          repo: aws-technical-test-tf
+          owner: ayrtonfidel9
+          run_id: ${{ steps.return_dispatch.outputs.run_id }}
+          run_timeout_seconds: 300 # Optional
+          poll_interval_ms: 5000
+  financial-client-a_plan:
+    needs: wait_for
+    uses: ayrtonfidel9/aws-technical-test-tf/.github/workflows/workflow.plan.yml@main
+    with:
+      component_path: 'us-east-1/env/prod/clients/financial-client-a'
+      environment: Production
+      component: financial-client-a
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  
+  financial-client-a_apply:
+    needs: gateway_plan
+    uses: ayrtonfidel9/aws-technical-test-tf/.github/workflows/workflow.apply.yml@main
+    with:
+      component_path: 'us-east-1/env/prod/clients/financial-client-a'
+      environment: Production
+      component: financial-client-a
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  
+  # financial-client-a_destroy:
+  #   needs: network_apply
+  #   uses: ayrtonfidel9/aws-technical-test-tf/.github/workflows/workflow.destroy.yml@main
+  #   with:
+  #     component_path: 'us-east-1/env/prod/clients/financial-client-a'
+  #     environment: Production
+  #     component: financial-client-a
+  #   secrets:
+  #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

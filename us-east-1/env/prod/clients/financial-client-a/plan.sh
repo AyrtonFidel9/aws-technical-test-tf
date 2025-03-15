@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export AWS_PROFILE=ayrton
+
 echo "Planning Inference Domain..."
 sleep 5
 cd Inference-Domain/

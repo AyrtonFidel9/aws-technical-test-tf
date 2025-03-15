@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export AWS_PROFILE=ayrton
+
+
 echo "Destroying Inference Domain..."
 sleep 5
 cd Inference-Domain/
