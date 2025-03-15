@@ -7,10 +7,7 @@ on:
       - '.github/workflows/**'
 
 jobs:
-  validate:
-    runs-on: ubuntu-latest
-    container: hashicorp/terraform:1.11
-    steps: 
-      - name: Validate Network settings
-        working-directory: ${{ inputs.component_path }}
-        run: sh network-validate.sh
+  network:
+    uses: ayrtonfidel9/aws-technical-test-tf/.github/workflows/terraform-workflow.yml@main
+    with:
+      component_path: 'us-east-1/env/prod/network/'

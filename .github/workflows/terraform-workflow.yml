@@ -14,4 +14,4 @@ jobs:
     steps: 
       - name: Validate Network settings
         working-directory: ${{ inputs.component_path }}
-        run: bash ./network-validate.sh
+        run: sh ./network-validate.sh
