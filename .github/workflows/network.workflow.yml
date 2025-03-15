@@ -6,16 +6,21 @@ on:
         description: "Path of terraform component"
         required: true
         type: string
+      environment:
+        required: true
+        type: string
     secrets:
       AWS_ACCESS_KEY_ID:
         required: true
       AWS_SECRET_ACCESS_KEY:
         required: true
+    
 
 jobs:
   validate:
     runs-on: ubuntu-latest
     container: hashicorp/terraform:1.11
+    environment: ${{ inputs.environment }}
     steps:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
