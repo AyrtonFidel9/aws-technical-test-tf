@@ -6,9 +6,9 @@ on:
         description: "Path of terraform component"
         required: true
         type: string
-permissions:
-  id-token: write
-  contents: read
+# permissions:
+#   id-token: write
+#   contents: read
 
 jobs:
   validate:
