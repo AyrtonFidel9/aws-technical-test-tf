@@ -1,16 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.55.0"
-    }
-  }
-
-  backend "s3" {
-    
-  }
-}
-
 module "network" {
   source = "../../../../../modules/network/01-vpc"
   
