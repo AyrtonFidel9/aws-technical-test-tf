@@ -1,12 +1,15 @@
-name: Terraform Pipeline
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+name: Terraform Validate Stage
+run-name: ${{ github.actor }} is Validating Terraform project 🚀
 on: 
   push:
     paths:
       - 'us-east-1/**'
-      - '.github/workflows/**'
+      #- '.github/workflows/**'
 jobs:
-  Validate:
+  validate:
     runs-on: ubuntu-latest
+    container: hashicorp/terraform:1.11
     steps:
-      - run: echo 'validation job created'
+      - name: Validate Network settings
+        working-directory: ./us-east-1/env/prod/network
+        run: bash ./network-validate.sh
