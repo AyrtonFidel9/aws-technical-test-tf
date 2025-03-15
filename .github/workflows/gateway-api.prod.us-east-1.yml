@@ -8,6 +8,8 @@ on:
 
 jobs:
   wait_for:
+    runs-on: ubuntu-latest
+    environment: Production
     steps:
       - name: Dispatch an action and get the run ID
         uses: codex-/return-dispatch@v1
