@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Validate Network settings
         #working-directory: ${{ github.workspace }}/${{ inputs.component_path }}
-        run: sh ${PWD}/network-validate.sh
+        run: sh ${PWD}/${{ inputs.component_path }}/network-validate.sh
 
 # run: |
 #          chmod +x ./public/scripts/test.sh
