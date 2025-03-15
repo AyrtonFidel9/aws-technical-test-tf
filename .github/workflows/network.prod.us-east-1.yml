@@ -11,4 +11,6 @@ jobs:
     uses: ayrtonfidel9/aws-technical-test-tf/.github/workflows/network.workflow.yml@main
     with:
       component_path: 'us-east-1/env/prod/network'
-    secrets: inherit
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
