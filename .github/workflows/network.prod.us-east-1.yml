@@ -9,6 +9,6 @@ on:
 jobs:
   network_prod:
     uses: ayrtonfidel9/aws-technical-test-tf/.github/workflows/network.workflow.yml@main
+    secrets: inherit
     with:
       component_path: 'us-east-1/env/prod/network'
-    secrets: inherit
