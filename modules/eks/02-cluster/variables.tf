@@ -14,6 +14,6 @@ variable "eks_cluster_ae_role_arn" {
   type = string
 }
 
-variable "ec2_helm_role" {
-  type = string
-}
+# variable "ec2_helm_role" {
+#   type = string
+# }

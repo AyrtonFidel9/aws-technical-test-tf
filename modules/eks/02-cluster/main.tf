@@ -67,13 +67,13 @@ resource "aws_eks_access_entry" "custom_access_entry" {
 
 }
 
-resource "aws_eks_access_entry" "custom_access_entry_for_pipeline" {
-  cluster_name      = aws_eks_cluster.terraform_eks_cluster.name
-  principal_arn     = var.ec2_helm_role
-  #kubernetes_groups = [ "system:nodes" ]
-  type              = "STANDARD"
+# resource "aws_eks_access_entry" "custom_access_entry_for_pipeline" {
+#   cluster_name      = aws_eks_cluster.terraform_eks_cluster.name
+#   principal_arn     = var.ec2_helm_role
+#   #kubernetes_groups = [ "system:nodes" ]
+#   type              = "STANDARD"
 
-}
+# }
 
 resource "aws_eks_access_policy_association" "AmazonEKSClusterAdminPolicyAssociation" {
   cluster_name  = aws_eks_cluster.terraform_eks_cluster.name
@@ -85,12 +85,12 @@ resource "aws_eks_access_policy_association" "AmazonEKSClusterAdminPolicyAssocia
   }
 }
 
-resource "aws_eks_access_policy_association" "AmazonEKSClusterAdminPolicyAssociationToCodeBuild" {
-  cluster_name  = aws_eks_cluster.terraform_eks_cluster.name
-  policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
-  principal_arn = var.ec2_helm_role
+# resource "aws_eks_access_policy_association" "AmazonEKSClusterAdminPolicyAssociationToCodeBuild" {
+#   cluster_name  = aws_eks_cluster.terraform_eks_cluster.name
+#   policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+#   principal_arn = var.ec2_helm_role
 
-  access_scope {
-    type       = "cluster"
-  }
-}
+#   access_scope {
+#     type       = "cluster"
+#   }
+# }
