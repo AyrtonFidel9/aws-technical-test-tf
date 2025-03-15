@@ -18,7 +18,7 @@ module "network" {
 
   tags = {
     Description         = "VPC for Uplinq project"
-    Environment         = var.envir onment
+    Environment         = var.environment
     CreatedBy           = var.created_by
     Application         = var.application
     CostCenter          = var.cost_center
