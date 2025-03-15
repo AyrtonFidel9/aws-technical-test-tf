@@ -5,13 +5,10 @@ on:
     paths:
       - 'us-east-1/env/prod/network/**'
       - '.github/workflows/**'
-environment: production
 
-permissions:
-      id-token: write
-      contents: read 
 jobs:
   credentials:
+    environment: Production
     runs-on: ubuntu-latest
     steps:
       - name: Configure AWS Credentials
