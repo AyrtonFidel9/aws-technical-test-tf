@@ -37,4 +37,4 @@ jobs:
       - uses: actions/checkout@v2
       - name: Destroy ${{ inputs.component }} settings
         working-directory: ${{ inputs.component_path }}
-        run: sh ${{ inputs.component }}-destroy.sh
+        run: sh destroy.sh

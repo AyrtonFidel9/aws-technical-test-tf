@@ -1,4 +1,4 @@
-key             = "clients/financial-client-a/inference-domain/terraform.tfstate"
+key             = "us-east-1/env/prod/clients/financial-client-a/inference-domain/terraform.tfstate"
 bucket          = "uplinq-infra"
 region          = "us-east-1"
 profile         = "ayrton"

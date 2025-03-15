@@ -38,7 +38,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Validate ${{ inputs.component }} settings
         working-directory: ${{ inputs.component_path }}
-        run: sh ${{ inputs.component }}-validate.sh
+        run: sh validate.sh
   plan:
     runs-on: ubuntu-latest
     needs: validate
@@ -58,4 +58,4 @@ jobs:
       - uses: actions/checkout@v2
       - name: Terraform Plan ${{ inputs.component }} settings
         working-directory: ${{ inputs.component_path }}
-        run: sh ${{ inputs.component }}-plan.sh
+        run: sh plan.sh
