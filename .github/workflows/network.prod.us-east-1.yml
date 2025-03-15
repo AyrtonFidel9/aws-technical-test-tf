@@ -5,6 +5,7 @@ on:
     paths:
       - 'us-east-1/env/prod/network/**'
       - '.github/workflows/**'
+environment: production
 
 permissions:
       id-token: write
