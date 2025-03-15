@@ -12,7 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     container: hashicorp/terraform:1.11
     steps:
+      - uses: actions/checkout@v2
       - name: Validate Network settings
-        working-directory: ${{ github.workspace }}/${{ inputs.component_path }}
-        run: sh ./network-validate.sh
-  
+        #working-directory: ${{ github.workspace }}/${{ inputs.component_path }}
+        run: sh ${PWD}/network-validate.sh
+
+# run: |
+#          chmod +x ./public/scripts/test.sh
+#          ./public/scripts/test.sh
+#       shell: bash
