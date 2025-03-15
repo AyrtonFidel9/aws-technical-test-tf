@@ -1,0 +1,17 @@
+name: validate-plan-deploy
+on:
+  workflow_call:
+    inputs:
+      component_path:
+        description: "Path of terraform component"
+        required: true
+        type: string
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    container: hashicorp/terraform:1.11
+    steps:
+      - uses: actions/checkout@v2
+      - name: Validate Network settings
+        run: sh ${PWD}/${{ inputs.component_path }}/network-validate.sh
