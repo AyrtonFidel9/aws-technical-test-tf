@@ -1,23 +1,14 @@
-stage: &stage
-  run-name: ${{ github.actor }} is Validating Terraform project 🚀
-  on: 
-    push:
-      paths:
-        - 'us-east-1/env/prod/$COMPONENT/**'
-        - '.github/workflows/**'
-        
-name: Terraform Validate Stage
-env:
-  COMPONENT: "network"
-<<: *stage
+name: Network
+run-name: ${{ github.actor }} is Validating Terraform project 🚀
+on: 
+  push:
+    paths:
+      - 'us-east-1/env/prod/network/**'
+      - '.github/workflows/**'
 
 jobs:
-  validate:
-    runs-on: ubuntu-latest
-    container: hashicorp/terraform:1.11
-    env:
-      COMPONENT: "network"
-    steps: 
-      - name: Validate Network settings
-          working-directory: us-east-1/env/prod/network
-          run: bash ./network-validate.sh
+  network-stages:
+    uses: ayrtonfidel9/aws-technical-test-tf/.github/workflows/terraform-workflow.yml@main
+    # Passing 'node-version' as an input parameter to the reusable workflow
+    with:
+      component_path: 'us-east-1/env/prod/network/'
