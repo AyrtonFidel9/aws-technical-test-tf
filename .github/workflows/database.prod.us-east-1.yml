@@ -47,7 +47,7 @@ jobs:
     needs: database_plan
     uses: ayrtonfidel9/aws-technical-test-tf/.github/workflows/workflow.apply.yml@main
     with:
-      component_path: 'us-east-1/env/prod/clients/database'
+      component_path: 'us-east-1/env/prod/database'
       environment: Production
       component: database
     secrets:
