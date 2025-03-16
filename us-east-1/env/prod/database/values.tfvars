@@ -4,6 +4,7 @@ engine = "postgresql"
 engine_version = "11.4"
 parameter_group_name = "default.mysql8.0"
 username = "uplinq"
+port = 5432
 
 created_by         = "Ayrton Fidel"
 application        = "uplinq"

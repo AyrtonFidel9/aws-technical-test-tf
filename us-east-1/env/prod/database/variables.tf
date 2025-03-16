@@ -19,6 +19,10 @@ variable "storage" {
   
 }
 
+variable "port" {
+  
+}
+
 variable "username" {
   type = string
 }

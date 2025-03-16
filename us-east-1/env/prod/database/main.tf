@@ -9,6 +9,7 @@ module "rds" {
   username             = var.username
   ingress_subnets_cidr = data.terraform_remote_state.tf_subnets.outputs.gateway_api_subnets_cidr
   subnets_id           = data.terraform_remote_state.tf_subnets.outputs.isolated_subnets_id
+  port                 = var.port 
 
   tags = {
     Description         = "Database"

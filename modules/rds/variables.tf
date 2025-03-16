@@ -33,3 +33,7 @@ variable "subnets_id" {
 variable "ingress_subnets_cidr" {
   type = list(string)
 }
+
+variable "port" {
+  
+}

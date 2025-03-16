@@ -1,3 +1,7 @@
+resource "random_string" "random" {
+  length           = 5
+  special          = false
+}
 
 resource "random_password" "master_password" {
   length  = 16
@@ -23,14 +27,24 @@ resource "aws_db_subnet_group" "uplinq_subnet_group" {
   subnet_ids = var.subnets_id
 }
 
-resource "aws_db_security_group" "db_sg" {
+resource "aws_security_group" "db_sg" {
   name = "${var.tags.Application}-${var.tags.Environment}-sg"
 
   dynamic "ingress" {
     for_each = var.ingress_subnets_cidr
     content {
-      cidr = var.ingress.value
+      cidr_blocks      = [ ingress.value ]
+      from_port        = var.port
+      to_port          = var.port
+      protocol         = "tcp" 
     }
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
@@ -41,14 +55,14 @@ resource "aws_db_instance" "uplinq_database" {
   engine_version       = var.engine_version
   instance_class       = var.db_type
   manage_master_user_password = true
-  username             = aws_secretsmanager_secret_version.db_credentials_secret[0]["username"] 
+  username             = jsondecode(aws_secretsmanager_secret_version.db_credentials_secret.secret_string)["username"] 
   parameter_group_name = var.parameter_group_name
-  password             = aws_secretsmanager_secret_version.db_credentials_secret[0]["password"]
+  password             = jsondecode(aws_secretsmanager_secret_version.db_credentials_secret.secret_string)["password"]
   skip_final_snapshot  = true
   max_allocated_storage = var.storage * 10
   storage_encrypted     = true
   db_subnet_group_name = aws_db_subnet_group.uplinq_subnet_group.name
-  vpc_security_group_ids = [ aws_db_security_group.db_sg.id ]
+  vpc_security_group_ids = [ aws_security_group.db_sg.id ]
   
   tags = var.tags
 }
