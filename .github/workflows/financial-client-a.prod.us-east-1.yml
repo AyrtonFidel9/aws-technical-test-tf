@@ -20,7 +20,7 @@ jobs:
           owner: ayrtonfidel9
           workflow: network.prod.us-east-1.yml
           ref: refs/heads/main
-          distinct_id: wait-for-network-client-a
+          #distinct_id: wait-for-network-client-a
           #workflow_timeout_seconds: 3000
       - name: Await Run ID ${{ steps.return_dispatch.outputs.run_id }}
         uses: Codex-/await-remote-run@v1.0.0
@@ -29,8 +29,8 @@ jobs:
           repo: aws-technical-test-tf
           owner: ayrtonfidel9
           run_id: ${{ steps.return_dispatch.outputs.run_id }}
-          run_timeout_seconds: 300 # Optional
-          poll_interval_ms: 5000
+          #run_timeout_seconds: 300 # Optional
+          #poll_interval_ms: 5000
 
   financial-client-a_plan:
     needs: wait_for

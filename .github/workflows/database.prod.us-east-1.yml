@@ -29,8 +29,8 @@ jobs:
           repo: aws-technical-test-tf
           owner: ayrtonfidel9
           run_id: ${{ steps.return_dispatch.outputs.run_id }}
-          run_timeout_seconds: 300 # Optional
-          poll_interval_ms: 5000
+          #run_timeout_seconds: 300 # Optional
+          #poll_interval_ms: 5000
 
   database_plan:
     needs: wait_for
