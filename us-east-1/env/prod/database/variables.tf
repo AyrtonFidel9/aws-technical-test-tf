@@ -11,7 +11,7 @@ variable "engine" {
   type = string
 }
 
-variable "parameter_group_name" {
+variable "parameter_group_family" {
   type = string
 }
 

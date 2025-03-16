@@ -14,7 +14,7 @@ variable "engine" {
   type = string
 }
 
-variable "parameter_group_name" {
+variable "parameter_group_family" {
   type = string
 }
 
@@ -36,4 +36,8 @@ variable "ingress_subnets_cidr" {
 
 variable "port" {
   
+}
+
+variable "vpc_id" {
+  description = "Wordpress Public Subnets"
 }

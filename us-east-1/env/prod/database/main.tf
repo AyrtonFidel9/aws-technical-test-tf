@@ -5,11 +5,12 @@ module "rds" {
   storage              = var.storage
   engine               = var.engine
   engine_version       = var.engine_version
-  parameter_group_name = var.parameter_group_name
+  parameter_group_family = var.parameter_group_family
   username             = var.username
   ingress_subnets_cidr = data.terraform_remote_state.tf_subnets.outputs.gateway_api_subnets_cidr
   subnets_id           = data.terraform_remote_state.tf_subnets.outputs.isolated_subnets_id
   port                 = var.port 
+  vpc_id               = data.terraform_remote_state.tf_vpc.outputs.vpc_id 
 
   tags = {
     Description         = "Database"
